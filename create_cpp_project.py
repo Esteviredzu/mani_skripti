@@ -10,15 +10,17 @@ def create_cpp_project(folder_name):
         os.system(f"mkdir -p {folder_name}/build")
 
         with open(f"{folder_name}/build/CMakeLists.txt", "w") as cmake_file:
-            text = '''cmake_minimum_required(VERSION 3.10)
-project(testo)
+            text = f'''cmake_minimum_required(VERSION 3.10)
+project({folder_name})
             
 set(CMAKE_CXX_STANDARD 14)
             
 include_directories(../include)
 file(GLOB SOURCES ../src/*.cpp)
             
-add_executable(testo ${SOURCES})'''
+add_executable({folder_name} ${{SOURCES}})
+'''
+
             
             cmake_file.write(text)
 
